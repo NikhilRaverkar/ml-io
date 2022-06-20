@@ -161,7 +161,7 @@ With this mode changes made in Python files will be immediately reflected when t
 Please refer to Arrow's official install instructions [here](https://arrow.apache.org/install/) first. As Arrow does not guarantee API compatibility (yet) you have to make sure that your environment has the right version. As of today MLIO works with Arrow v0.15.1. Once you have it installed, turn on the `MLIO_INCLUDE_ARROW_INTEGRATION` flag as follows:
 
 ```bash
-$ conda install pyarrow=0.16.0
+$ conda install pyarrow=8.0.0
 $ cmake DMLIO_INCLUDE_PYTHON_EXTENSION=ON -DMLIO_INCLUDE_ARROW_INTEGRATION=ON ../..
 $ cmake --build . --target mlio-py
 $ cmake --build . --target mlio-arrow
