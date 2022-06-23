@@ -80,14 +80,14 @@ setup(distclass=Distribution,
       # Options
       packages=find_packages(),
       python_requires='>=3.6',
-      install_requires=['numpy>=1.8.2'],
+      install_requires=['numpy>=1.21.6'],
       extras_require={
-          'pandas': ['pandas>=0.23.0'],
-          'scipy': ['scipy>=0.13.3'],
+          'pandas': ['pandas>=1.2.4'],
+          'scipy': ['scipy>=1.6.2'],
           'tensorflow': ['tensorflow>=1.9.0'],
           'torch': ['torch>=1.0.0'],
           'mxnet': ['mxnet>=1.4.1'],
-          'pyarrow': ['pyarrow==8.0.0'],
+          'pyarrow': ['pyarrow==3.0.0'],
       },
 
       # Add our externally-built extension modules to the package.

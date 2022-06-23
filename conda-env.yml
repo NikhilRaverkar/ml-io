@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - pytorch
 dependencies:
-  - arrow-cpp=1.0
+  - arrow-cpp=3.0
   - aws-sdk-cpp=1.8
   - boto3=1.14
   - cmake=3.15

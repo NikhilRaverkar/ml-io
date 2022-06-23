@@ -21,10 +21,10 @@ MACOSX_DEPLOYMENT_TARGET:
 
 # Pinned versions
 arrow_cpp:
-  - 1.0
+  - 3.0
 aws_sdk_cpp:
   - 1.8
-cmake:
+cmake:x
   - 3.15
 doxygen:
   - 1.8
