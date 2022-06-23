@@ -23,7 +23,7 @@
 #include <mlio/record_readers/record.h>
 #include <mlio/streams/input_stream.h>
 #include <mlio/streams/memory_input_stream.h>
-#include <stdio.h>
+
 #include "arrow_file.h"
 #include<iostream>
 
@@ -53,11 +53,11 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
 {
     auto nf_type = py::module::import("pyarrow").attr("NativeFile");
 
-    printf("imported pyarrow in mlio")
+    printf("imported pyarrow in mlio");
     auto nf_inst = nf_type();
-    printf("created nativeFile object from instance")
+    printf("created nativeFile object from instance");
     auto *obj = reinterpret_cast<Py_arrow_native_file *>(nf_inst.ptr());
-    printf("Reverse Typecased object")
+    printf("Reverse Typecased object");
     obj->random_access = std::make_shared<Arrow_file>(std::move(stream));
     obj->input_stream = obj->random_access;
     obj->output_stream = nullptr;
@@ -65,7 +65,7 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
     obj->writable = 0;
     obj->seekable = 1;
     obj->own_file = 1;
-    printf("Object is written and ready to return")
+    printf("Object is written and ready to return");
     return nf_inst;
 }
 
@@ -79,8 +79,8 @@ static py::object as_arrow_file(const Data_store &st)
 static py::object as_arrow_file(const Record &record)
 {
     auto stream = make_intrusive<Memory_input_stream>(record.payload());
-    printf("Stream is read from record ")
-    cout<<"STREAM:"<<stream
+    printf("Stream is read from record ");
+    cout<<"STREAM:"<<stream;
     return make_py_arrow_native_file(std::move(stream));
 }
 
