@@ -26,7 +26,8 @@
 #include <boost/lexical_cast.hpp>
 #include "arrow_file.h"
 #include <iostream>
-#include <ostringstream>
+#include <sstream>
+#include <string> 
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, mlio::Intrusive_ptr<T>, true);
 
