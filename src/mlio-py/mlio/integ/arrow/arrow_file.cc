@@ -26,11 +26,13 @@
 #include "arrow_util.h"
 
 using namespace mlio;
+using namespace std;
 
 namespace pymlio {
 
 Arrow_file::Arrow_file(Intrusive_ptr<Input_stream> stream) : stream_{std::move(stream)}
 {
+    printf("Input stream in file\n");
     if (!stream_->seekable()) {
         throw std::invalid_argument{"The input stream is not seekable."};
     }
@@ -40,26 +42,28 @@ Arrow_file::~Arrow_file() = default;
 
 arrow::Result<std::int64_t> Arrow_file::Read(std::int64_t nbytes, void *out) noexcept
 {
+    printf("Trying to read arrow file\n");
     RETURN_NOT_OK(check_if_closed());
 
     return arrow_boundary<std::int64_t>([=]() {
         auto size = static_cast<std::size_t>(nbytes);
 
         auto bits = static_cast<std::byte *>(out);
-
+        printf("Trying to move memory span to destination\n");
         Mutable_memory_span destination{bits, size};
-
+        printf("Returning memory span destination\n");
         return static_cast<std::int64_t>(stream_->read(destination));
     });
 }
 
 arrow::Result<std::shared_ptr<arrow::Buffer>> Arrow_file::Read(std::int64_t nbytes) noexcept
 {
+     printf("Trying to read arrow buffer\n");
     RETURN_NOT_OK(check_if_closed());
 
     return arrow_boundary<std::shared_ptr<arrow::Buffer>>([=]() {
         auto size = static_cast<std::size_t>(nbytes);
-
+        printf("Trying to move memory span to destination\n");
         return std::make_shared<Arrow_buffer>(stream_->read(size));
     });
 }
