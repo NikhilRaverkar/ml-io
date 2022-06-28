@@ -53,9 +53,9 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
 {
     auto nf_type = py::module::import("pyarrow").attr("NativeFile");
 
-    printf("imported pyarrow in mlio");
+    printf("imported pyarrow in mlio\n");
     auto nf_inst = nf_type();
-    printf("created nativeFile object from instance");
+    printf("created nativeFile object from instance\n");
     auto *obj = reinterpret_cast<Py_arrow_native_file *>(nf_inst.ptr());
     printf("Reverse Typecased object");
     obj->random_access = std::make_shared<Arrow_file>(std::move(stream));
@@ -65,7 +65,7 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
     obj->writable = 0;
     obj->seekable = 1;
     obj->own_file = 1;
-    printf("Object is written and ready to return");
+    printf("Object is written and ready to return\n");
     return nf_inst;
 }
 
@@ -79,12 +79,15 @@ static py::object as_arrow_file(const Data_store &st)
 static py::object as_arrow_file(const Record &record)
 {
     auto stream = make_intrusive<Memory_input_stream>(record.payload());
-    printf("Stream is read from record ");
-    return make_py_arrow_native_file(std::move(stream));
+    printf("Stream is read from record\n");
+    auto nf_inst_arrow = make_py_arrow_native_file(std::move(stream)
+    printf("make native file returned correct data, returning now\n");
+    return nf_inst_arrow;
 }
 
 PYBIND11_MODULE(arrow, m)
 {
+    printf("inside pybind module\n")
     m.def("as_arrow_file", py::overload_cast<const Data_store &>(&as_arrow_file), "store"_a);
 
     m.def("as_arrow_file", py::overload_cast<const Record &>(&as_arrow_file), "record"_a);
