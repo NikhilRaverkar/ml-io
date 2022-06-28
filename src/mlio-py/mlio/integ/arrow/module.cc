@@ -87,7 +87,7 @@ static py::object as_arrow_file(const Record &record)
 
 PYBIND11_MODULE(arrow, m)
 {
-    printf("inside pybind module\n")
+    printf("inside pybind module\n");
     m.def("as_arrow_file", py::overload_cast<const Data_store &>(&as_arrow_file), "store"_a);
 
     m.def("as_arrow_file", py::overload_cast<const Record &>(&as_arrow_file), "record"_a);
