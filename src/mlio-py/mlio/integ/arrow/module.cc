@@ -80,7 +80,7 @@ static py::object as_arrow_file(const Record &record)
 {
     auto stream = make_intrusive<Memory_input_stream>(record.payload());
     printf("Stream is read from record\n");
-    auto nf_inst_arrow = make_py_arrow_native_file(std::move(stream)
+    auto nf_inst_arrow = make_py_arrow_native_file(std::move(stream))
     printf("make native file returned correct data, returning now\n");
     return nf_inst_arrow;
 }
