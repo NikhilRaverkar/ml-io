@@ -40,7 +40,7 @@ namespace pymlio {
 
 // The memory layout of Arrow's Cython NativeFile type.
 struct Py_arrow_native_file {
-    PyObject_HEAD void *vtable;
+    PyObject_VAR_HEAD void *vtable;
     //std::shared_ptr<arrow::io::InputStream> input_stream;
     //std::shared_ptr<arrow::io::RandomAccessFile> random_access;
     //std::shared_ptr<arrow::io::OutputStream> output_stream;
@@ -64,6 +64,7 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
     //obj->random_access = std::make_shared<Arrow_file>(std::move(stream));
     //obj->input_stream = obj->random_access;
     //obj->output_stream = nullptr;
+    auto dex =  std::make_shared<Arrow_file>(std::move(stream));
     obj->readable = 1;
     obj->writable = 0;
     obj->seekable = 1;
