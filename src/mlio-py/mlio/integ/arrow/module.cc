@@ -53,8 +53,8 @@ struct Py_arrow_native_file {
 static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream)
 {
     auto nf_type = py::module::import("pyarrow").attr("NativeFile");
-    auto nf_type_class = py::module::import("pyarrow.lib").attr("_Weakrefable").attr("__class__");
-    printf("base type of nf %s",py::module::import("pyarrow.lib").attr("_Weakrefable").attr("__qualname__"));
+    //auto nf_type_class = py::module::import("pyarrow.lib").attr("_Weakrefable").attr("__class__");
+    //printf("base type of nf %s",py::module::import("pyarrow.lib").attr("_Weakrefable").attr("__qualname__"));
     printf("type of nf %s",nf_type.attr("__qualname__"));
     printf("imported pyarrow in mlio\n");
     auto nf_inst = nf_type();
@@ -69,6 +69,7 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
     obj->seekable = 1;
     obj->own_file = 1;
     printf("Object is written and ready to return\n");
+    printf("type of nf inst %s",nf_inst.attr("__qualname__"));
     //printf("Size Input %d\n",obj->input_stream.GetSize());
     return nf_inst;
 }
