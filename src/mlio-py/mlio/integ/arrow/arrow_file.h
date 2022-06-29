@@ -45,8 +45,6 @@ public:
 
     arrow::Result<std::shared_ptr<arrow::Buffer>> Read(std::int64_t nbytes) noexcept final;
 
-    arrow::Status Seek(std::int64_t position) noexcept final;
-
     arrow::Status Close() noexcept final;
 
     arrow::Result<std::int64_t> Tell() const noexcept final;
