@@ -23,7 +23,6 @@
 #include <mlio/record_readers/record.h>
 #include <mlio/streams/input_stream.h>
 #include <mlio/streams/memory_input_stream.h>
-#include <boost/lexical_cast.hpp>
 #include "arrow_file.h"
 #include <iostream>
 #include <sstream>
@@ -88,8 +87,6 @@ static py::object as_arrow_file(const Record &record)
     myObjectStream << nf_inst_arrow;
     std::string mySerializedObject = myObjectStream.str();
     std::cout << mySerializedObject << std::endl;
-    std::string str = boost::lexical_cast<std::string>(nf_inst_arrow);
-    std::cout << str << std::endl;
     return nf_inst_arrow;
 }
 
