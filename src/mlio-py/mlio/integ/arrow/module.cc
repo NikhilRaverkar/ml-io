@@ -84,8 +84,9 @@ static py::object as_arrow_file(const Record &record)
     printf("Stream is read from record\n");
     auto nf_inst_arrow = make_py_arrow_native_file(std::move(stream));
     printf("make native file returned correct data, returning now\n");
-    //std::string strValue = nf_inst_arrow.ToString();
-   // std::cout << strValue << std::endl;
+    py::object strValue = nf_inst_arrow.attr("size");
+    printf("Printing file size:");
+    py::print(py::str(strValue));
     return nf_inst_arrow;
 }
 
