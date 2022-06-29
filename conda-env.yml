@@ -6,7 +6,7 @@ dependencies:
   - arrow-cpp=3.0
   - aws-sdk-cpp=1.8
   - boto3=1.14
-  - cmake=3.15
+  - cmake=3.5.0
   - compilers
   - doxygen=1.8
   - flake8=3.8

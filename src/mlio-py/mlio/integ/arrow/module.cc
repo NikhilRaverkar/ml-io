@@ -67,6 +67,7 @@ static py::object make_py_arrow_native_file(Intrusive_ptr<Input_stream> &&stream
     obj->seekable = 1;
     obj->own_file = 1;
     printf("Object is written and ready to return\n");
+    //printf("Size Input %d\n",obj->input_stream.GetSize());
     return nf_inst;
 }
 
@@ -83,8 +84,8 @@ static py::object as_arrow_file(const Record &record)
     printf("Stream is read from record\n");
     auto nf_inst_arrow = make_py_arrow_native_file(std::move(stream));
     printf("make native file returned correct data, returning now\n");
-    std::string strValue = nf_inst_arrow->ToString();
-    std::cout << strValue << std::endl;
+    //std::string strValue = nf_inst_arrow.ToString();
+   // std::cout << strValue << std::endl;
     return nf_inst_arrow;
 }
 

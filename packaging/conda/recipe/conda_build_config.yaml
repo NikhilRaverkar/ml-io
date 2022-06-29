@@ -25,7 +25,7 @@ arrow_cpp:
 aws_sdk_cpp:
   - 1.8
 cmake:x
-  - 3.15
+  - 3.5.0
 doxygen:
   - 1.8
 libiconv:
